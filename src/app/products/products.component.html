@@ -1,0 +1,84 @@
+<div class="card-main">
+    <div *ngFor="let item of products; let i = index">
+        <mat-card class="example-card">
+            <mat-card-header>
+                <div mat-card-avatar class="example-header-image" [style.backgroundImage]="'url('+ item.profileImage +')'"></div>
+                <mat-card-title>{{item.headerName}}</mat-card-title>
+                <mat-card-subtitle>{{item.subHeaderName}}</mat-card-subtitle>
+                <span style="padding: 0% 120px"></span>
+                <mat-icon (click)="deleteproduct(item._id,i)">close</mat-icon>
+            </mat-card-header>
+            <img mat-card-image [src]="item.image" alt="Photo of a Shiba Inu">
+            <mat-card-content>
+                <p>
+                   {{item.desc}}
+                </p>
+            </mat-card-content>
+            <mat-card-actions>
+                <span style="padding: 0% 30%"></span>
+                <mat-icon (click)="likePage(item._id,item.likes)">thumb_up</mat-icon>{{" " +item.likes == null?0:item.likes}}
+                <span style="padding: 0% 10px"></span>
+                <mat-icon>share</mat-icon>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+</div>
+
+
+<div class="example-container">
+    <form [formGroup]="productGroup" (ngSubmit)="onSubmit(productGroup.value)">
+        <div>
+            <input type="file" (change)="profileImage($event)" accept="image/*">
+        </div>
+        <mat-form-field class="form-element">
+            <input matInput placeholder="profile image" formControlName="profileImage">
+            <mat-error
+                *ngIf="!productGroup.controls['profileImage'].valid && productGroup.controls['profileImage'].touched">
+                {{ "required field" }}
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="form-element">
+            <input matInput placeholder="Header Name" formControlName="headerName">
+            <mat-error
+                *ngIf="!productGroup.controls['headerName'].valid && productGroup.controls['headerName'].touched">
+                {{ "required field" }}
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="form-element">
+            <input matInput placeholder="Sub Header Name" formControlName="subHeaderName">
+            <mat-error
+                *ngIf="!productGroup.controls['subHeaderName'].valid && productGroup.controls['subHeaderName'].touched">
+                {{ "required field" }}
+            </mat-error>
+        </mat-form-field>
+
+        <div>
+            <input type="file" (change)="image($event)" accept="image/*">
+        </div>
+
+        <mat-form-field class="form-element">
+            <input matInput placeholder="image" formControlName="image">
+            <mat-error *ngIf="!productGroup.controls['image'].valid && productGroup.controls['image'].touched">
+                {{ "required field" }}
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="form-element">
+            <textarea matInput placeholder="Description" formControlName="desc"></textarea>
+            <mat-error *ngIf="!productGroup.controls['desc'].valid && productGroup.controls['desc'].touched">
+                {{ "required field" }}
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="form-element">
+            <input matInput placeholder="likes" formControlName="likes">
+        </mat-form-field>
+
+        <div>
+            <button type="submit" mat-raised-button color="primary" [disabled]="!productGroup.valid">Submit</button>
+        </div>
+
+    </form>
+</div>
