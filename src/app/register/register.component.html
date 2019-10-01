@@ -1,0 +1,49 @@
+<div class="container" fxLayout="column" fxLayoutAlign="center center">
+    <mat-card>
+        <div class="sub-container">
+            <div style="margin: 10px 0px"></div>
+            <h2>Register Your Details</h2>
+            <div style="margin: 10px 0px"></div>
+            <form [formGroup]="registerFormGroup" (ngSubmit)="onSubmit(registerFormGroup.value)" class="form" fxLayout="column" fxLayoutAlign="center center">
+        
+                <mat-form-field class="form-element" appearance="outline">
+                    <input matInput placeholder="User Name" formControlName="userName">
+                    <mat-error *ngIf="!registerFormGroup.controls['userName'].valid && registerFormGroup.controls['userName'].touched">
+                        Enter User Name
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="form-element" appearance="outline">
+                    <input matInput placeholder="Email Address" formControlName="email">
+                    <mat-error *ngIf="!registerFormGroup.controls['email'].valid && registerFormGroup.controls['email'].touched">
+                        Enter Poper Email Address
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="form-element" appearance="outline">
+                    <input matInput placeholder="Mobile Number" formControlName="mobileNo">
+                    <mat-error *ngIf="!registerFormGroup.controls['mobileNo'].valid && registerFormGroup.controls['mobileNo'].touched">
+                        Enter Poper Mobile Number
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="form-element" appearance="outline">
+                    <input matInput placeholder="Password" formControlName="password">
+                    <mat-error *ngIf="!registerFormGroup.controls['password'].valid && registerFormGroup.controls['password'].touched">
+                        Enter Password
+                    </mat-error>
+                </mat-form-field>
+        
+                <div class="form-element">
+                    <button mat-raised-button color="primary" type="submit" class="button" [disabled]="!registerFormGroup.valid">Submit Form</button>
+                </div>
+                {{passworderror}}
+            </form>
+            <div>
+                <p>
+                    Already have an account? <a [routerLink]="[ '/login']">Login</a>
+                </p>
+            </div>
+        </div>
+    </mat-card>
+</div>

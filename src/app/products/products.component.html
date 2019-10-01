@@ -1,3 +1,10 @@
+<mat-toolbar color="primary">
+    <mat-toolbar-row>
+      <span>PKart</span>
+      <span class="example-spacer"></span>
+      <button mat-button (click)="logout()"><mat-icon>power_settings_new</mat-icon> Logout</button>
+    </mat-toolbar-row>
+  </mat-toolbar>
 <div class="card-main">
     <div *ngFor="let item of products; let i = index">
         <mat-card class="example-card">

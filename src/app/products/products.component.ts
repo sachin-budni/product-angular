@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../service/product.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from '../service/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-products',
@@ -10,7 +12,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class ProductsComponent implements OnInit {
   products = [];
   public productGroup:FormGroup;
-  constructor(private productService:ProductService,private fb:FormBuilder) { }
+  constructor(private productService:ProductService,private fb:FormBuilder,private auth:AuthService,private route:Router) { }
 
   ngOnInit() {
     this.productGroup = this.fb.group({
@@ -67,4 +69,10 @@ export class ProductsComponent implements OnInit {
       }
     });
   }
+
+  logout(){
+    this.auth.logout();
+    this.route.navigate(['/login'])
+  }
+
 }

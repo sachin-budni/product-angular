@@ -9,11 +9,18 @@ import { ProductService } from './service/product.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DemoMaterialModule } from './material.module';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { CookieService } from 'ngx-cookie-service';
+import { AuthGuard } from './auth/auth.guard';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ProductsComponent
+    ProductsComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -21,9 +28,10 @@ import { DemoMaterialModule } from './material.module';
     HttpClientModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    DemoMaterialModule
+    DemoMaterialModule,
+    FlexLayoutModule
   ],
-  providers: [ProductService],
+  providers: [ProductService,CookieService,AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
